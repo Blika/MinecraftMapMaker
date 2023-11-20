@@ -11,6 +11,7 @@
 #include <single_include/nlohmann/json.hpp>
 #include <stb_image.h>
 namespace mapmaker{
+    
     MapMaker::MapMaker(){
         nlohmann::json map;
         nlohmann::json blocks_src;
@@ -276,7 +277,7 @@ namespace mapmaker{
             int size = async_pool.size();
             std::vector<int> finished{};
             for(int i = 0; i < size; i++){
-                if(async_pool.at(i).wait_for(std::chrono::seconds(0)) == std::future_status::ready){
+                if(async_pool[i].wait_for(std::chrono::seconds(0)) == std::future_status::ready){
                     finished.push_back(i);
                 }
             }
